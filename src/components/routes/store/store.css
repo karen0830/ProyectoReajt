@@ -1,0 +1,28 @@
+div{
+    background-color: #f9f9f9;
+}
+
+/* Agrega una clase personalizada para el modal */
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(248, 248, 248, 0.7); /* Fondo semitransparente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Asegúrate de que esté por encima de otros elementos */
+    color: black;
+  }
+
+  .modal{
+    width: 40%;
+  }
+  
