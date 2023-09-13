@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+hr {
+  height: 2.5px;
+  width: 80%;
+  background-color: black;
+  text-align: center;
+}
+
+/* Store */
+.cardShopingGeneral{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.resultsShopping {
+  background-color: #f0f0f0;
+}
+
+div{
+    background-color: #f0f0f0;
+}
+
+.ShoppingTotal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70%;
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.moreandLess{
+    height: 30px;
+    width: 112px;
+}

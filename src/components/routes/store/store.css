@@ -1,7 +1,3 @@
-div{
-    background-color: #f9f9f9;
-}
-
 /* Agrega una clase personalizada para el modal */
 .modal-container {
     display: flex;
@@ -25,4 +21,6 @@ div{
   .modal{
     width: 40%;
   }
+  
+
   

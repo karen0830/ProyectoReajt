@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../../Header/Header";
 import { Footer } from "../../footer/Footer";
-import "./Store.css"
+import "./Store.css";
 
 export const Store = () => {
   const [products, setProducts] = useState([]);
@@ -11,11 +11,11 @@ export const Store = () => {
   const [Image, setImage] = useState(null);
   const [Price, setPrice] = useState(null);
   const [Id, setId] = useState(null);
-  const [classNameModal, setClassNameModal] = useState("hidden")
+  const [classNameModal, setClassNameModal] = useState("hidden");
   const [items, setItems] = useState([]);
-  const [totalS, setTotal] = useState(0)
-  const [classShopping, setClassShopping] = useState("hidden")
-  const [activateShopping, setActivateShopping] = useState(true)
+  const [totalS, setTotal] = useState(0);
+  const [classShopping, setClassShopping] = useState("hidden");
+  const [activateShopping, setActivateShopping] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,10 +38,10 @@ export const Store = () => {
     console.log(count);
     let count1 = count + 1;
     setCount(count1);
-    addItem(image, title, description, price, id)
-    setTotal(totalS + price)
+    addItem(image, title, description, price, id);
+    setTotal(totalS + price);
   }
-  
+
   function ButtonModal(image, title, description, price, id) {
     setImage(image);
     setTitle(title);
@@ -60,11 +60,11 @@ export const Store = () => {
   }, [Title, Image, Description, Id]);
 
   useEffect(() => {
-    items.forEach(product => {
+    items.forEach((product) => {
       console.log(product);
-    })
+    });
     if (items.length === 0) {
-      setTotal(0)
+      setTotal(0);
     }
     console.log(items.length);
   }, [items]);
@@ -82,29 +82,32 @@ export const Store = () => {
       description: description,
       price: price,
       count: 1,
-      total: price
+      total: price,
     };
 
-    items.forEach(product => {
+    items.forEach((product) => {
       if (product.id == id) {
-        product.count += 1
-        product.total = product.count * product.price
-        add += 1
+        product.count += 1;
+        product.total = product.count * product.price;
+        add += 1;
       }
-    })
+    });
 
     if (add == 0) {
       setItems([...items, newItem]);
     }
   };
 
-
   function more(id) {
     const updatedItems = items.map((product) => {
       if (product.id === id) {
-        setCount(count + 1)
-        setTotal(totalS + product.price)
-        return { ...product, count: product.count + 1, total: product.price * (product.count + 1) };
+        setCount(count + 1);
+        setTotal(totalS + product.price);
+        return {
+          ...product,
+          count: product.count + 1,
+          total: product.price * (product.count + 1),
+        };
       }
       return product;
     });
@@ -112,14 +115,20 @@ export const Store = () => {
   }
 
   function less(id) {
-    const updatedItems = items.map((product) => {
-      if (product.id === id) {
-        setCount(count - 1)
-        setTotal(totalS - product.price)
-        return { ...product, count: product.count - 1, total: product.total - product.price * 1 };
-      }
-      return product;
-    }).filter((product) => product.count > 0); // Filtramos los elementos cuyo count sea mayor o igual a 0;
+    const updatedItems = items
+      .map((product) => {
+        if (product.id === id) {
+          setCount(count - 1);
+          setTotal(totalS - product.price);
+          return {
+            ...product,
+            count: product.count - 1,
+            total: product.total - product.price * 1,
+          };
+        }
+        return product;
+      })
+      .filter((product) => product.count > 0); // Filtramos los elementos cuyo count sea mayor o igual a 0;
     setItems(updatedItems);
   }
 
@@ -138,52 +147,74 @@ export const Store = () => {
     setItems(updatedItems);
   }
 
-  const see = () =>{
+  const see = () => {
     if (activateShopping) {
-      setClassShopping("visible text-black")
-      setActivateShopping(false)
-    }else {
-      setClassShopping("hidden")
-      setActivateShopping(true)
+      setClassShopping("w-9/12 visible text-black flex flex-col gap-10");
+      setActivateShopping(false);
+    } else {
+      setClassShopping("hidden");
+      setActivateShopping(true);
     }
-  }
-
+  };
 
   return (
     <>
       <Header />
       <div>
-        <h1>Productos</h1>
-        <div>
-          <div>
-            <button onClick={see} className="text-black">
+        <div className="resultsShopping flex gap-5 text-lg items-center justify-center flex-col">
+          <hr />
+          <div className="ShoppingTotal">
+            <button onClick={see} className="text-black h-16 w-32">
+              <h1>Ver productos</h1>
               <span>
                 <i className="ri-shopping-cart-fill">{count}</i>
               </span>
             </button>
-            <p className="text-black">Total: {totalS}</p>
+            <p className="text-black">Total: {totalS.toFixed(2)}</p>
           </div>
-          <div className={classShopping}>
+          <div className={`${classShopping}`}>
             {items.map((item) => (
-              <div className="flex h-32" key={item.id}>
-                <div>
-                  <button onClick={() => less(item.id)}>-</button>
-                  <button>{item.count}</button>
-                  <button onClick={() => more(item.id)}>+</button>
+              <div className="cardShoping flex h-32 flex-row gap-6 justify-start items-center w-full" key={item.id}>
+                <img className="w-28 h-28" src={item.image} alt="" />
+
+                <div className="w-full">
+                  <h2 className="">{item.title}</h2>
+                  <p className="hidden">{item.description}</p>
+                  <p>Precio: ${item.price}</p>
+                  <button
+                  onClick={() =>
+                    ButtonModal(
+                      item.image,
+                      item.title,
+                      item.description,
+                      item.price,
+                      item.id
+                    )
+                  }
+                >
+                  Ver más Información
+                </button>
                 </div>
-                <img className="w-36 h-36" src={item.image} alt="" />
-                <h2>{item.title}</h2>
-                <p className="hidden">{item.description}</p>
-                <p>Precio: ${item.price}</p><br />
-                <div>
-                  <button onClick={() => deleteId(item.id)}>x</button>
-                  <p> {item.total}</p>
+
+                <div className="flex flex-col">
+                  <div className="moreandLess flex flex-row gap-4 justify-start">
+                    <button onClick={() => less(item.id)}>-</button>
+                    <button>{item.count}</button>
+                    <button onClick={() => more(item.id)}>+</button>
+                  </div>
                 </div>
+
+                <div>
+                  <p>Total: {item.total.toFixed(2)}</p>
+                </div>
+
+                <button onClick={() => deleteId(item.id)}>x</button>
               </div>
             ))}
           </div>
         </div>
       </div>
+      <h1>Productos</h1>
       {products.length > 0 ? (
         <div className="flex flex-wrap gap-16 bg-white px-2.5">
           {products.map((product) => (
@@ -192,30 +223,38 @@ export const Store = () => {
               key={product.id}
             >
               <div>
-                <button onClick={() =>
-                  countFunction(
-                    product.image,
-                    product.title,
-                    product.description,
-                    product.price,
-                    product.id
-                  )
-                }>+</button>
+                <button
+                  onClick={() =>
+                    countFunction(
+                      product.image,
+                      product.title,
+                      product.description,
+                      product.price,
+                      product.id
+                    )
+                  }
+                >
+                  +
+                </button>
               </div>
               <img className="w-36 h-36" src={product.image} alt="" />
               <h2>{product.title}</h2>
               <p className="hidden">{product.description}</p>
               <p>Precio: ${product.price}</p>
               <div>
-                <button onClick={() =>
-                  ButtonModal(
-                    product.image,
-                    product.title,
-                    product.description,
-                    product.price,
-                    product.id
-                  )
-                }>Ver màs Informaciòn</button>
+                <button
+                  onClick={() =>
+                    ButtonModal(
+                      product.image,
+                      product.title,
+                      product.description,
+                      product.price,
+                      product.id
+                    )
+                  }
+                >
+                  Ver màs Informaciòn
+                </button>
               </div>
             </div>
           ))}
@@ -223,22 +262,18 @@ export const Store = () => {
       ) : (
         <p>Cargando productos...</p>
       )}
-      <div className={`modal-container ${classNameModal}`} >
+      <div className={`modal-container ${classNameModal}`}>
         <div className={`modal ${classNameModal}`} key={Id}>
           <button onClick={closeModal}>x</button>
           <img className="w-36 h-36" src={Image} alt="" />
           <h2>{Title}</h2>
           <p className={classNameModal}>{Description}</p>
           <p>Precio: ${Price}</p>
-          <button onClick={() =>
-            countFunction(
-              Image,
-              Title,
-              Description,
-              Price,
-              Id
-            )
-          }>+</button>
+          <button
+            onClick={() => countFunction(Image, Title, Description, Price, Id)}
+          >
+            +
+          </button>
         </div>
       </div>
       <Footer />
