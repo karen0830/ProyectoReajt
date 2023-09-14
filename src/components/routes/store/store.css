@@ -5,7 +5,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgba(248, 248, 248, 0.7); /* Fondo semitransparente */
+    background: rgba(248, 248, 248, 0.7); /* Fondo semitransparente */
     position: fixed;
     top: 0;
     left: 0;
@@ -17,10 +17,3 @@
     z-index: 999; /* Asegúrate de que esté por encima de otros elementos */
     color: black;
   }
-
-  .modal{
-    width: 40%;
-  }
-  
-
-  

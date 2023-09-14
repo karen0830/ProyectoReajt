@@ -10,18 +10,27 @@ hr {
 }
 
 /* Store */
+.product{
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  background-color: #f0f0f0;
+}
+.cardShoping{
+  background-color: #f0f0f0;
+}
+
+.cardShoping div{
+  background-color: #f0f0f0;
+}
 .cardShopingGeneral{
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
+
 .resultsShopping {
   background-color: #f0f0f0;
-}
-
-div{
-    background-color: #f0f0f0;
 }
 
 .ShoppingTotal{

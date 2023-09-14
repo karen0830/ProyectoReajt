@@ -48,7 +48,7 @@ export const Store = () => {
     setDescription(description);
     setPrice(price);
     setId(id);
-    setClassNameModal("visible");
+    setClassNameModal("visible w-3/10");
   }
 
   useEffect(() => {
@@ -149,7 +149,7 @@ export const Store = () => {
 
   const see = () => {
     if (activateShopping) {
-      setClassShopping("w-9/12 visible text-black flex flex-col gap-10");
+      setClassShopping("w-9/12 visible text-black flex flex-col gap-10 pt-5");
       setActivateShopping(false);
     } else {
       setClassShopping("hidden");
@@ -174,7 +174,10 @@ export const Store = () => {
           </div>
           <div className={`${classShopping}`}>
             {items.map((item) => (
-              <div className="cardShoping flex h-32 flex-row gap-6 justify-start items-center w-full" key={item.id}>
+              <div
+                className="cardShoping flex h-32 flex-row gap-6 justify-start items-center w-full"
+                key={item.id}
+              >
                 <img className="w-28 h-28" src={item.image} alt="" />
 
                 <div className="w-full">
@@ -182,18 +185,18 @@ export const Store = () => {
                   <p className="hidden">{item.description}</p>
                   <p>Precio: ${item.price}</p>
                   <button
-                  onClick={() =>
-                    ButtonModal(
-                      item.image,
-                      item.title,
-                      item.description,
-                      item.price,
-                      item.id
-                    )
-                  }
-                >
-                  Ver más Información
-                </button>
+                    onClick={() =>
+                      ButtonModal(
+                        item.image,
+                        item.title,
+                        item.description,
+                        item.price,
+                        item.id
+                      )
+                    }
+                  >
+                    Ver más Información
+                  </button>
                 </div>
 
                 <div className="flex flex-col">
@@ -214,16 +217,17 @@ export const Store = () => {
           </div>
         </div>
       </div>
-      <h1>Productos</h1>
       {products.length > 0 ? (
-        <div className="flex flex-wrap gap-16 bg-white px-2.5">
+        <div className="flex flex-wrap gap-16 bg-white pt-5 pb-5">
           {products.map((product) => (
             <div
-              className="text-black w-64 bg-f0f0f0 mx-auto text-left"
+              className="product text-black w-64 bg-f0f0f0 mx-auto text-left"
               key={product.id}
             >
-              <div>
+              <div className="flex gap-9">
+                <img className="w-36 h-36" src={product.image} alt="" />
                 <button
+                  className="h-9 w-7"
                   onClick={() =>
                     countFunction(
                       product.image,
@@ -237,7 +241,6 @@ export const Store = () => {
                   +
                 </button>
               </div>
-              <img className="w-36 h-36" src={product.image} alt="" />
               <h2>{product.title}</h2>
               <p className="hidden">{product.description}</p>
               <p>Precio: ${product.price}</p>
@@ -253,7 +256,7 @@ export const Store = () => {
                     )
                   }
                 >
-                  Ver màs Informaciòn
+                  Ver más Información
                 </button>
               </div>
             </div>
@@ -263,13 +266,16 @@ export const Store = () => {
         <p>Cargando productos...</p>
       )}
       <div className={`modal-container ${classNameModal}`}>
-        <div className={`modal ${classNameModal}`} key={Id}>
-          <button onClick={closeModal}>x</button>
-          <img className="w-36 h-36" src={Image} alt="" />
+        <div className={`modal w-1/3 border border-solid border-gray-400 text-left p-32${classNameModal}`} key={Id}>
+          <div className="flex flex-row-reverse justify-between items-center">
+            <button className="w-12 h-12 mb-28" onClick={closeModal}>x</button>
+            <img className="w-36 h-36 flex" src={Image} alt="" />
+          </div>
           <h2>{Title}</h2>
           <p className={classNameModal}>{Description}</p>
           <p>Precio: ${Price}</p>
           <button
+          className="w-12 h-12"
             onClick={() => countFunction(Image, Title, Description, Price, Id)}
           >
             +
