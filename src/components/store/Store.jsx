@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../Header/Header.jsx";
 import { Footer } from "../footer/Footer";
-import "./Store.css";
+import "./store.css";
 
 export const Store = () => {
   const [products, setProducts] = useState([]);
