@@ -22,13 +22,13 @@ export const Navbar = () => {
             </a>
           </NavLink>
 
-          <NavLink to="/Contact">
+          <NavLink to="/contact">
             <a href="">
               <button>CONTACTO</button>
             </a>
           </NavLink>
 
-          <NavLink to="/Tienda">
+          <NavLink to="/tienda">
             <a href="">
               <button>TIENDA</button>
             </a>
