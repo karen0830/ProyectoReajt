@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "../../Header/Header";
-import { Footer } from "../../footer/Footer";
+import { Header } from "../Header/Header.jsx";
+import { Footer } from "../footer/Footer";
 import "./Store.css";
 
 export const Store = () => {

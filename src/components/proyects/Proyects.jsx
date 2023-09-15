@@ -1,5 +1,5 @@
-import { Header } from "../../Header/Header"
-import { Footer } from "../../footer/Footer"
+import { Header } from "../Header/Header"
+import { Footer } from "../footer/Footer"
 export const Proyects = () => {
     return (
         <>
